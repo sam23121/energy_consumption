@@ -11,9 +11,14 @@ git clone https://github.com/sam23121/energy_consumption.git
 ```
 2. Navigate to the project directory:
 ```
-cd my-package
+cd energy_consumption
 ```
-3. Install the required dependencies using pip and the requirements.txt file located in the root directory:
+3. create pip environment
+```
+python -m venv energy
+source energy/bin/activate
+```
+4. Install the required dependencies using pip and the requirements.txt file located in the root directory:
 ```
 pip install -r requirements.txt
 ```
