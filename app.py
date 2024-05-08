@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from forcast import fit_data, get_next_12_months, predict
+from forcast import fit_data, get_next_12_months, predict, change_date_format
 
 # Define function to display home page
 def home(df=None):
@@ -54,6 +54,10 @@ def upload_csv():
         else:
             # Display the DataFrame
             df.columns = ["ds", "y"]
+            df["ds"] = df.apply(lambda x: change_date_format(x.ds,'%Y-%m-%d'), axis=1)
+            # df['ds'] = pd.to_datetime(df['ds'])# .dt.to_timestamp()
+            # df['ds'] = df['ds'].dt.strftime('%Y-%m-28')
+            # df['ds'] = pd.to_datetime(df['ds'])
             st.write("## CSV File Contents")
             st.write(df)
             clustering(df)
