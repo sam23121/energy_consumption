@@ -53,6 +53,7 @@ def upload_csv():
             return None
         else:
             # Display the DataFrame
+            df.columns = ["ds", "y"]
             st.write("## CSV File Contents")
             st.write(df)
             clustering(df)
