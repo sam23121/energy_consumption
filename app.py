@@ -6,7 +6,7 @@ from forcast import fit_data, get_next_12_months, predict, change_date_format
 # Define function to display home page
 def home(df=None):
     st.write("# Forcasting future Energy Consumptions")
-    st.write("Uplod your households electricity bill (prefered if it is above 5 years)")
+    st.write("Upload your future Energy Consumptions (prefered if it is above 5 years)")
     # st.write("Please use the navigation bar on the left to see the forcast for the next year")
 
     if df is not None:
@@ -20,8 +20,8 @@ def clustering(df):
     st.write("# Clustering")
 
     # Load the KMeans model
-    with open('kmeans_model.pkl', 'rb') as f:
-        kmeans = pickle.load(f)
+    with open('birch_model.pkl', 'rb') as f:
+        birch = pickle.load(f)
 
     # User input
     # user_input = st.number_input("Enter a value:")
@@ -29,7 +29,7 @@ def clustering(df):
     cluser_value = df.groupby("ds").agg({"y": "mean"})["y"][0]
 
     # Predict against the user input
-    predicted_cluster = kmeans.predict([[cluser_value]])
+    predicted_cluster = birch.predict([[cluser_value]])
     st.write("Predicted Cluster:", predicted_cluster[0])
 
 
